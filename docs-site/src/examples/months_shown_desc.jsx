@@ -2,7 +2,7 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 
-export default class MultiMonthPrevious extends React.Component {
+export default class MonthsShownDesc extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -24,7 +24,7 @@ export default class MultiMonthPrevious extends React.Component {
     selected={this.state.startDate}
     onChange={this.handleChange}
     monthsShown={2}
-    showPreviousMonths uuu
+    monthsShownDesc
 />
 `}
         </code>
@@ -33,7 +33,7 @@ export default class MultiMonthPrevious extends React.Component {
         <DatePicker
             monthsShown={2}
             onChange={this.handleChange}
-            showPreviousMonths
+            monthsShownDesc
             selected={this.state.startDate} />
       </div>
     </div>

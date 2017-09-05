@@ -394,7 +394,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          inline: _this.props.inline,
 	          peekNextMonth: _this.props.peekNextMonth,
 	          showMonthDropdown: _this.props.showMonthDropdown,
-	          showPreviousMonths: _this.props.showPreviousMonths,
 	          showWeekNumbers: _this.props.showWeekNumbers,
 	          showYearDropdown: _this.props.showYearDropdown,
 	          forceShowMonthNavigation: _this.props.forceShowMonthNavigation,
@@ -405,6 +404,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          outsideClickIgnoreClass: outsideClickIgnoreClass,
 	          fixedHeight: _this.props.fixedHeight,
 	          monthsShown: _this.props.monthsShown,
+	          monthsShownDesc: _this.props.monthsShownDesc,
 	          onDropdownFocus: _this.handleDropdownFocus,
 	          onMonthChange: _this.props.onMonthChange,
 	          dayClassName: _this.props.dayClassName,
@@ -544,6 +544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  maxDate: _propTypes2.default.object,
 	  minDate: _propTypes2.default.object,
 	  monthsShown: _propTypes2.default.number,
+	  monthsShownDesc: _propTypes2.default.bool,
 	  name: _propTypes2.default.string,
 	  onBlur: _propTypes2.default.func,
 	  onChange: _propTypes2.default.func.isRequired,
@@ -569,7 +570,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  showMonthDropdown: _propTypes2.default.bool,
 	  showWeekNumbers: _propTypes2.default.bool,
 	  showYearDropdown: _propTypes2.default.bool,
-	  showPreviousMonths: _propTypes2.default.bool,
 	  forceShowMonthNavigation: _propTypes2.default.bool,
 	  startDate: _propTypes2.default.object,
 	  tabIndex: _propTypes2.default.number,
@@ -857,10 +857,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _this.renderMonths = function () {
 	      var monthList = [];
-	      var monthsToSubtract = _this.props.showPreviousMonths ? _this.props.monthsShown - 1 : 0;
-	      var fromMonthDate = _this.state.date.clone().subtract(monthsToSubtract, 'M');
 	      for (var i = 0; i < _this.props.monthsShown; ++i) {
-	        var monthDate = fromMonthDate.clone().add(i, 'M');
+	        var monthDate = _this.state.date.clone().add(i, 'M');
 	        var monthKey = 'month-' + i;
 	        monthList.push(_react2.default.createElement(
 	          'div',
@@ -910,6 +908,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            peekNextMonth: _this.props.peekNextMonth,
 	            utcOffset: _this.props.utcOffset })
 	        ));
+	      }
+
+	      if (_this.props.monthsShownDesc) {
+	        monthList.reverse();
 	      }
 	      return monthList;
 	    };
@@ -971,6 +973,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  maxDate: _propTypes2.default.object,
 	  minDate: _propTypes2.default.object,
 	  monthsShown: _propTypes2.default.number,
+	  monthsShownDesc: _propTypes2.default.bool,
 	  onClickOutside: _propTypes2.default.func.isRequired,
 	  onMonthChange: _propTypes2.default.func,
 	  forceShowMonthNavigation: _propTypes2.default.bool,
@@ -985,7 +988,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  selectsEnd: _propTypes2.default.bool,
 	  selectsStart: _propTypes2.default.bool,
 	  showMonthDropdown: _propTypes2.default.bool,
-	  showPreviousMonths: _propTypes2.default.bool,
 	  showWeekNumbers: _propTypes2.default.bool,
 	  showYearDropdown: _propTypes2.default.bool,
 	  startDate: _propTypes2.default.object,
