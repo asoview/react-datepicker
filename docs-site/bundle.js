@@ -39459,7 +39459,7 @@
 	            utcOffset: _this.props.utcOffset })
 	        ));
 	      }
-	      console.log(_this.props.monthsShownDesc);
+
 	      if (_this.props.monthsShownDesc) {
 	        monthList.reverse();
 	      }

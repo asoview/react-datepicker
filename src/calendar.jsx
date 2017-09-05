@@ -307,7 +307,7 @@ export default class Calendar extends React.Component {
           </div>
       )
     }
-    console.log(this.props.monthsShownDesc)
+
     if (this.props.monthsShownDesc) {
       monthList.reverse()
     }
