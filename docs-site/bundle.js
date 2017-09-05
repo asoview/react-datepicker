@@ -20751,9 +20751,9 @@
 
 	var _multi_month_drp2 = _interopRequireDefault(_multi_month_drp);
 
-	var _multi_month_previous = __webpack_require__(527);
+	var _months_shown_desc = __webpack_require__(527);
 
-	var _multi_month_previous2 = _interopRequireDefault(_multi_month_previous);
+	var _months_shown_desc2 = _interopRequireDefault(_months_shown_desc);
 
 	var _children = __webpack_require__(528);
 
@@ -20904,8 +20904,8 @@
 	      title: 'Multiple months with year dropdown',
 	      component: _react2.default.createElement(_multi_month_drp2.default, null)
 	    }, {
-	      title: 'Show previous months',
-	      component: _react2.default.createElement(_multi_month_previous2.default, null)
+	      title: 'Show months reverse order',
+	      component: _react2.default.createElement(_months_shown_desc2.default, null)
 	    }, {
 	      title: 'Children',
 	      component: _react2.default.createElement(_children2.default, null)
@@ -38944,7 +38944,6 @@
 	          inline: _this.props.inline,
 	          peekNextMonth: _this.props.peekNextMonth,
 	          showMonthDropdown: _this.props.showMonthDropdown,
-	          showPreviousMonths: _this.props.showPreviousMonths,
 	          showWeekNumbers: _this.props.showWeekNumbers,
 	          showYearDropdown: _this.props.showYearDropdown,
 	          forceShowMonthNavigation: _this.props.forceShowMonthNavigation,
@@ -38955,6 +38954,7 @@
 	          outsideClickIgnoreClass: outsideClickIgnoreClass,
 	          fixedHeight: _this.props.fixedHeight,
 	          monthsShown: _this.props.monthsShown,
+	          monthsShownDesc: _this.props.monthsShownDesc,
 	          onDropdownFocus: _this.handleDropdownFocus,
 	          onMonthChange: _this.props.onMonthChange,
 	          dayClassName: _this.props.dayClassName,
@@ -39094,6 +39094,7 @@
 	  maxDate: _propTypes2.default.object,
 	  minDate: _propTypes2.default.object,
 	  monthsShown: _propTypes2.default.number,
+	  monthsShownDesc: _propTypes2.default.bool,
 	  name: _propTypes2.default.string,
 	  onBlur: _propTypes2.default.func,
 	  onChange: _propTypes2.default.func.isRequired,
@@ -39119,7 +39120,6 @@
 	  showMonthDropdown: _propTypes2.default.bool,
 	  showWeekNumbers: _propTypes2.default.bool,
 	  showYearDropdown: _propTypes2.default.bool,
-	  showPreviousMonths: _propTypes2.default.bool,
 	  forceShowMonthNavigation: _propTypes2.default.bool,
 	  startDate: _propTypes2.default.object,
 	  tabIndex: _propTypes2.default.number,
@@ -39407,10 +39407,8 @@
 
 	    _this.renderMonths = function () {
 	      var monthList = [];
-	      var monthsToSubtract = _this.props.showPreviousMonths ? _this.props.monthsShown - 1 : 0;
-	      var fromMonthDate = _this.state.date.clone().subtract(monthsToSubtract, 'M');
 	      for (var i = 0; i < _this.props.monthsShown; ++i) {
-	        var monthDate = fromMonthDate.clone().add(i, 'M');
+	        var monthDate = _this.state.date.clone().add(i, 'M');
 	        var monthKey = 'month-' + i;
 	        monthList.push(_react2.default.createElement(
 	          'div',
@@ -39460,6 +39458,10 @@
 	            peekNextMonth: _this.props.peekNextMonth,
 	            utcOffset: _this.props.utcOffset })
 	        ));
+	      }
+	      console.log(_this.props.monthsShownDesc);
+	      if (_this.props.monthsShownDesc) {
+	        monthList.reverse();
 	      }
 	      return monthList;
 	    };
@@ -39521,6 +39523,7 @@
 	  maxDate: _propTypes2.default.object,
 	  minDate: _propTypes2.default.object,
 	  monthsShown: _propTypes2.default.number,
+	  monthsShownDesc: _propTypes2.default.bool,
 	  onClickOutside: _propTypes2.default.func.isRequired,
 	  onMonthChange: _propTypes2.default.func,
 	  forceShowMonthNavigation: _propTypes2.default.bool,
@@ -39535,7 +39538,6 @@
 	  selectsEnd: _propTypes2.default.bool,
 	  selectsStart: _propTypes2.default.bool,
 	  showMonthDropdown: _propTypes2.default.bool,
-	  showPreviousMonths: _propTypes2.default.bool,
 	  showWeekNumbers: _propTypes2.default.bool,
 	  showYearDropdown: _propTypes2.default.bool,
 	  startDate: _propTypes2.default.object,
@@ -63384,13 +63386,13 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var MultiMonthPrevious = function (_React$Component) {
-	  _inherits(MultiMonthPrevious, _React$Component);
+	var MonthsShownDesc = function (_React$Component) {
+	  _inherits(MonthsShownDesc, _React$Component);
 
-	  function MultiMonthPrevious(props) {
-	    _classCallCheck(this, MultiMonthPrevious);
+	  function MonthsShownDesc(props) {
+	    _classCallCheck(this, MonthsShownDesc);
 
-	    var _this = _possibleConstructorReturn(this, (MultiMonthPrevious.__proto__ || Object.getPrototypeOf(MultiMonthPrevious)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (MonthsShownDesc.__proto__ || Object.getPrototypeOf(MonthsShownDesc)).call(this, props));
 
 	    _this.handleChange = function (date) {
 	      _this.setState({
@@ -63404,7 +63406,7 @@
 	    return _this;
 	  }
 
-	  _createClass(MultiMonthPrevious, [{
+	  _createClass(MonthsShownDesc, [{
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -63416,7 +63418,7 @@
 	          _react2.default.createElement(
 	            'code',
 	            { className: 'jsx' },
-	            '\n<DatePicker\n    selected={this.state.startDate}\n    onChange={this.handleChange}\n    monthsShown={2}\n    showPreviousMonths uuu\n/>\n'
+	            '\n<DatePicker\n    selected={this.state.startDate}\n    onChange={this.handleChange}\n    monthsShown={2}\n    monthsShownDesc\n/>\n'
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -63425,17 +63427,17 @@
 	          _react2.default.createElement(_reactDatepicker2.default, {
 	            monthsShown: 2,
 	            onChange: this.handleChange,
-	            showPreviousMonths: true,
+	            monthsShownDesc: true,
 	            selected: this.state.startDate })
 	        )
 	      );
 	    }
 	  }]);
 
-	  return MultiMonthPrevious;
+	  return MonthsShownDesc;
 	}(_react2.default.Component);
 
-	exports.default = MultiMonthPrevious;
+	exports.default = MonthsShownDesc;
 
 /***/ }),
 /* 528 */
