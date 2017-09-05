@@ -1116,7 +1116,7 @@
 
 /***/ }),
 /* 15 */
-[535, 6],
+[536, 6],
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5936,7 +5936,7 @@
 
 /***/ }),
 /* 50 */
-[535, 35],
+[536, 35],
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20468,7 +20468,7 @@
 
 	var _example_components2 = _interopRequireDefault(_example_components);
 
-	var _hero_example = __webpack_require__(534);
+	var _hero_example = __webpack_require__(535);
 
 	var _hero_example2 = _interopRequireDefault(_hero_example);
 
@@ -20751,29 +20751,33 @@
 
 	var _multi_month_drp2 = _interopRequireDefault(_multi_month_drp);
 
-	var _children = __webpack_require__(527);
+	var _multi_month_previous = __webpack_require__(527);
+
+	var _multi_month_previous2 = _interopRequireDefault(_multi_month_previous);
+
+	var _children = __webpack_require__(528);
 
 	var _children2 = _interopRequireDefault(_children);
 
-	var _portal = __webpack_require__(528);
+	var _portal = __webpack_require__(529);
 
 	var _portal2 = _interopRequireDefault(_portal);
 
-	var _inline_portal = __webpack_require__(529);
+	var _inline_portal = __webpack_require__(530);
 
 	var _inline_portal2 = _interopRequireDefault(_inline_portal);
 
-	var _raw_change = __webpack_require__(530);
+	var _raw_change = __webpack_require__(531);
 
 	var _raw_change2 = _interopRequireDefault(_raw_change);
 
-	var _dont_close_onSelect = __webpack_require__(531);
+	var _dont_close_onSelect = __webpack_require__(532);
 
 	var _dont_close_onSelect2 = _interopRequireDefault(_dont_close_onSelect);
 
-	__webpack_require__(532);
-
 	__webpack_require__(533);
+
+	__webpack_require__(534);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20899,6 +20903,9 @@
 	    }, {
 	      title: 'Multiple months with year dropdown',
 	      component: _react2.default.createElement(_multi_month_drp2.default, null)
+	    }, {
+	      title: 'Show previous months',
+	      component: _react2.default.createElement(_multi_month_previous2.default, null)
 	    }, {
 	      title: 'Children',
 	      component: _react2.default.createElement(_children2.default, null)
@@ -38937,6 +38944,7 @@
 	          inline: _this.props.inline,
 	          peekNextMonth: _this.props.peekNextMonth,
 	          showMonthDropdown: _this.props.showMonthDropdown,
+	          showPreviousMonths: _this.props.showPreviousMonths,
 	          showWeekNumbers: _this.props.showWeekNumbers,
 	          showYearDropdown: _this.props.showYearDropdown,
 	          forceShowMonthNavigation: _this.props.forceShowMonthNavigation,
@@ -39111,6 +39119,7 @@
 	  showMonthDropdown: _propTypes2.default.bool,
 	  showWeekNumbers: _propTypes2.default.bool,
 	  showYearDropdown: _propTypes2.default.bool,
+	  showPreviousMonths: _propTypes2.default.bool,
 	  forceShowMonthNavigation: _propTypes2.default.bool,
 	  startDate: _propTypes2.default.object,
 	  tabIndex: _propTypes2.default.number,
@@ -39398,8 +39407,10 @@
 
 	    _this.renderMonths = function () {
 	      var monthList = [];
+	      var monthsToSubtract = _this.props.showPreviousMonths ? _this.props.monthsShown - 1 : 0;
+	      var fromMonthDate = _this.state.date.clone().subtract(monthsToSubtract, 'M');
 	      for (var i = 0; i < _this.props.monthsShown; ++i) {
-	        var monthDate = _this.state.date.clone().add(i, 'M');
+	        var monthDate = fromMonthDate.clone().add(i, 'M');
 	        var monthKey = 'month-' + i;
 	        monthList.push(_react2.default.createElement(
 	          'div',
@@ -39524,6 +39535,7 @@
 	  selectsEnd: _propTypes2.default.bool,
 	  selectsStart: _propTypes2.default.bool,
 	  showMonthDropdown: _propTypes2.default.bool,
+	  showPreviousMonths: _propTypes2.default.bool,
 	  showWeekNumbers: _propTypes2.default.bool,
 	  showYearDropdown: _propTypes2.default.bool,
 	  startDate: _propTypes2.default.object,
@@ -63372,6 +63384,91 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var MultiMonthPrevious = function (_React$Component) {
+	  _inherits(MultiMonthPrevious, _React$Component);
+
+	  function MultiMonthPrevious(props) {
+	    _classCallCheck(this, MultiMonthPrevious);
+
+	    var _this = _possibleConstructorReturn(this, (MultiMonthPrevious.__proto__ || Object.getPrototypeOf(MultiMonthPrevious)).call(this, props));
+
+	    _this.handleChange = function (date) {
+	      _this.setState({
+	        startDate: date
+	      });
+	    };
+
+	    _this.state = {
+	      startDate: (0, _moment2.default)()
+	    };
+	    return _this;
+	  }
+
+	  _createClass(MultiMonthPrevious, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'pre',
+	          { className: 'column example__code' },
+	          _react2.default.createElement(
+	            'code',
+	            { className: 'jsx' },
+	            '\n<DatePicker\n    selected={this.state.startDate}\n    onChange={this.handleChange}\n    monthsShown={2}\n    showPreviousMonths uuu\n/>\n'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'column' },
+	          _react2.default.createElement(_reactDatepicker2.default, {
+	            monthsShown: 2,
+	            onChange: this.handleChange,
+	            showPreviousMonths: true,
+	            selected: this.state.startDate })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return MultiMonthPrevious;
+	}(_react2.default.Component);
+
+	exports.default = MultiMonthPrevious;
+
+/***/ }),
+/* 528 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDatepicker = __webpack_require__(352);
+
+	var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
+
+	var _moment = __webpack_require__(354);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var Children = function (_React$Component) {
 	  _inherits(Children, _React$Component);
 
@@ -63432,7 +63529,7 @@
 	exports.default = Children;
 
 /***/ }),
-/* 528 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63516,7 +63613,7 @@
 	exports.default = WithPortal;
 
 /***/ }),
-/* 529 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63611,7 +63708,7 @@
 	exports.default = InlinePortalVersion;
 
 /***/ }),
-/* 530 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63707,7 +63804,7 @@
 	exports.default = RawChanges;
 
 /***/ }),
-/* 531 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63791,15 +63888,15 @@
 	exports.default = DontCloseOnSelect;
 
 /***/ }),
-/* 532 */
+/* 533 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 533 */
-532,
 /* 534 */
+533,
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63866,7 +63963,7 @@
 	exports.default = HeroExample;
 
 /***/ }),
-/* 535 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	/**
