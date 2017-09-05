@@ -1,3 +1,14 @@
+# このリポジトリについて
+2017/9/5 小澤
+
+リニューアル版asoview.com あそレポ投稿画面(SP)にて、体験日を指定する際に、過去2年以上の日付の中から選択を行いたいが、
+過去日を先頭に表示する機能がないため、forkして実装を行いました。
+
+以下のPull Requestがmergeされた場合、過去日を先頭に表示する機能が実装される予定なので、
+mergeされ次第、本家の方に切り替え、こちらのブランチは削除する予定です。
+
+https://github.com/Hacker0x01/react-datepicker/pull/1007
+
 # React Date Picker
 
 [![npm version](https://badge.fury.io/js/react-datepicker.svg)](https://badge.fury.io/js/react-datepicker)
