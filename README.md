@@ -7,6 +7,8 @@
 以下のPull Requestがmergeされた場合、過去日を先頭に表示する機能が実装される予定なので、
 mergeされ次第、本家の方に切り替え、こちらのブランチは削除する予定です。
 
+https://github.com/Hacker0x01/react-datepicker/pull/1007
+
 # React Date Picker
 
 [![npm version](https://badge.fury.io/js/react-datepicker.svg)](https://badge.fury.io/js/react-datepicker)
