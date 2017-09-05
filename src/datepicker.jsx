@@ -46,6 +46,7 @@ export default class DatePicker extends React.Component {
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     monthsShown: PropTypes.number,
+    monthsShownDesc: PropTypes.bool,
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
@@ -71,7 +72,6 @@ export default class DatePicker extends React.Component {
     showMonthDropdown: PropTypes.bool,
     showWeekNumbers: PropTypes.bool,
     showYearDropdown: PropTypes.bool,
-    showPreviousMonths: PropTypes.bool,
     forceShowMonthNavigation: PropTypes.bool,
     startDate: PropTypes.object,
     tabIndex: PropTypes.number,
@@ -375,7 +375,6 @@ export default class DatePicker extends React.Component {
         inline={this.props.inline}
         peekNextMonth={this.props.peekNextMonth}
         showMonthDropdown={this.props.showMonthDropdown}
-        showPreviousMonths={this.props.showPreviousMonths}
         showWeekNumbers={this.props.showWeekNumbers}
         showYearDropdown={this.props.showYearDropdown}
         forceShowMonthNavigation={this.props.forceShowMonthNavigation}
@@ -386,6 +385,7 @@ export default class DatePicker extends React.Component {
         outsideClickIgnoreClass={outsideClickIgnoreClass}
         fixedHeight={this.props.fixedHeight}
         monthsShown={this.props.monthsShown}
+        monthsShownDesc={this.props.monthsShownDesc}
         onDropdownFocus={this.handleDropdownFocus}
         onMonthChange={this.props.onMonthChange}
         dayClassName={this.props.dayClassName}
